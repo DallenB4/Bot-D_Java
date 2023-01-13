@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "botd",
+  "version": "${version}",
+  "name": "Botd",
+  "description": "",
+  "authors": [
+    "Glue_Gunner4"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/botd/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "server": [
+      "glue_gunner4.botd.server.BotdServer"
+    ]
+  },
+  "mixins": [
+    "botd.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.12",
+    "minecraft": "1.19.3"
+  }
+}
