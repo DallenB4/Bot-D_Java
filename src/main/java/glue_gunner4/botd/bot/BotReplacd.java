@@ -1,6 +1,7 @@
 package glue_gunner4.botd.bot;
 
 import glue_gunner4.botd.config.BotdConfig;
+import glue_gunner4.botd.config.EmojisConfig;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
@@ -32,8 +33,7 @@ public class BotReplacd extends ListenerAdapter implements EventListener {
     public static String replace(String text) {
         if (!BotdConfig.BOTDCONFIG.getShouldReplace())
             return text;
-        String replacd = text.replaceAll(String.join("|", edStrings), "'D");
-        return replacd;
+        return text.replaceAll(String.join("|", edStrings), "'D");
     }
 
     public static void replace(Message message) {
@@ -58,7 +58,7 @@ public class BotReplacd extends ListenerAdapter implements EventListener {
             }
         }
         if (messageText.contains("'D")) {
-            message.addReaction(Emoji.fromFormatted("<:the_d:1060647733809123329>")).queue();
+            message.addReaction(Emoji.fromFormatted(EmojisConfig.getEmojiFromName("the_d"))).queue();
         }
     }
 }

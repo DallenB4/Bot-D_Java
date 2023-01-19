@@ -2,6 +2,7 @@ package glue_gunner4.botd.server;
 
 import glue_gunner4.botd.bot.Botd;
 import glue_gunner4.botd.config.BotdConfig;
+import glue_gunner4.botd.config.EmojisConfig;
 import glue_gunner4.botd.config.PlayersConfig;
 import glue_gunner4.botd.event.ServerEvents;
 import net.fabricmc.api.DedicatedServerModInitializer;
@@ -26,6 +27,7 @@ public class BotdServer implements DedicatedServerModInitializer {
     public void onInitializeServer() {
         BotdConfig.registerConfig();
         PlayersConfig.registerConfig();
+        EmojisConfig.registerConfig();
         Botd.start(BotdConfig.BOTDCONFIG.getToken());
         ServerEvents.registerEvents();
     }

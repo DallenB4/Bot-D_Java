@@ -31,8 +31,7 @@ public class Botd {
                 .enableIntents(GatewayIntent.GUILD_MESSAGES)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
                 .setChunkingFilter(ChunkingFilter.ALL)
-                .addEventListeners(new BotReplacd())
-                .addEventListeners(new BotdCommands())
+                .addEventListeners(new BotReplacd(), new BotdCommands(), new ShutdownCommand())
                 .build();
         try {
             jda.getPresence().setStatus(OnlineStatus.INVISIBLE);
@@ -77,5 +76,5 @@ public class Botd {
         JOINED,
         LEFT,
         UPDATE,
-    };
+    }
 }

@@ -4,7 +4,9 @@ import glue_gunner4.botd.bot.Botd;
 import glue_gunner4.botd.bot.DiscordMessage;
 import glue_gunner4.botd.server.BotdServer;
 import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
@@ -40,6 +42,7 @@ public class ServerEvents {
     private static void onServerStarting(MinecraftServer server) {
         BotdServer.server = server;
         Botd.jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
+        Botd.jda.getPresence().setPresence(Activity.playing("Server starting 👀"), false);
         startingMessage = Botd.sendMessage("**Server Starting!**");
     }
 
@@ -56,9 +59,10 @@ public class ServerEvents {
     private static void onServerStopped(MinecraftServer server) {
         Botd.sendMessage("**Server Stopped!**");
         if (Botd.shouldAlertStop) {
-            Botd.channel.sendMessage(new DiscordMessage("GAK!\n@Admin! The server may have crashed!").generateMessage()).complete();
+            String adminRole = Botd.guild.getRoleById("1046834715212128407").getAsMention();
+            Botd.channel.sendMessage(new DiscordMessage("GAK! " + adminRole + "! The server may have crashed!").generateMessage()).complete();
         }
-        Botd.jda.shutdown();
+        Botd.jda.shutdownNow();
     }
 
     private static void onPlayerJoined(ServerPlayNetworkHandler handler, PacketSender sender, MinecraftServer server) {

@@ -25,6 +25,7 @@ public class BotdCommands extends ListenerAdapter {
                 Commands.slash("say", "Displays a message to the server.").addOption(OptionType.STRING, "text", "Text to display.", true).setDefaultPermissions(DefaultMemberPermissions.DISABLED),
                 Commands.slash("delete", "Deletes x number of messages.").addOption(OptionType.INTEGER, "number", "Number of messsages to delete.", true).setDefaultPermissions(DefaultMemberPermissions.DISABLED),
                 Commands.slash("parrot", "Repeats what you type to this channel.").addOption(OptionType.STRING, "text", "Text to repeat.", true).setDefaultPermissions(DefaultMemberPermissions.DISABLED),
+                ShutdownCommand.COMMAND,
                 InfoCommand.COMMAND
         }).queue();
     }
@@ -37,6 +38,7 @@ public class BotdCommands extends ListenerAdapter {
             case "delete" -> deleteHistoryCommand(event);
             case "parrot" -> parrotCommand(event);
             case "info" -> InfoCommand.infoCommand(event);
+            case "shutdown" -> ShutdownCommand.ShutdownBot(event);
         }
     }
 
